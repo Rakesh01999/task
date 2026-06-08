@@ -1,34 +1,16 @@
 'use client';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setSearchQuery, showToast, toggleSidebar } from '../../store/appSlice';
-import { Menu, Search, Database, Bell, RefreshCw } from 'lucide-react';
-import { authAPI } from '../../lib/api';
-import { useState } from 'react';
+import { setSearchQuery, toggleSidebar } from '../../store/appSlice';
+import { Menu, Search, Bell } from 'lucide-react';
 
-export default function Navbar({ title, onRefresh }) {
+export default function Navbar({ title }) {
   const dispatch = useDispatch();
   const searchQuery = useSelector((state) => state.app.searchQuery);
   const user = useSelector((state) => state.auth.user);
-  const [seeding, setSeeding] = useState(false);
 
   const handleSearchChange = (e) => {
     dispatch(setSearchQuery(e.target.value));
-  };
-
-  const handleSeedDatabase = async () => {
-    try {
-      setSeeding(true);
-      const res = await authAPI.seed();
-      dispatch(showToast({ message: res.data.message || 'Database seeded successfully!', type: 'success' }));
-      if (onRefresh) {
-        onRefresh();
-      }
-    } catch (error) {
-      dispatch(showToast({ message: error.message || 'Seeding failed', type: 'error' }));
-    } finally {
-      setSeeding(false);
-    }
   };
 
   return (
@@ -62,22 +44,8 @@ export default function Navbar({ title, onRefresh }) {
         </div>
       </div>
 
-      {/* Right section: Seed DB & Notifications */}
+      {/* Right section: Notifications */}
       <div className="flex items-center gap-2">
-        <button
-          onClick={handleSeedDatabase}
-          disabled={seeding}
-          className="flex items-center gap-2 px-3 py-1.5 bg-slate-900 border border-indigo-500/20 hover:border-indigo-500/50 text-indigo-400 rounded-lg text-xs font-semibold hover:bg-indigo-950/20 transition-all disabled:opacity-50 cursor-pointer"
-          title="Reset database to default demo data"
-        >
-          {seeding ? (
-            <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-          ) : (
-            <Database className="w-3.5 h-3.5" />
-          )}
-          <span className="hidden sm:inline">Seed Demo Data</span>
-        </button>
-
         <div className="relative p-1.5 rounded-md hover:bg-slate-800/40 text-slate-400 hover:text-slate-200 transition-colors cursor-pointer">
           <Bell className="w-5 h-5" />
           <span className="absolute top-1 right-1 w-2 h-2 bg-indigo-500 rounded-full"></span>
@@ -93,6 +61,7 @@ export default function Navbar({ title, onRefresh }) {
           </div>
         )}
       </div>
+
     </header>
   );
 }

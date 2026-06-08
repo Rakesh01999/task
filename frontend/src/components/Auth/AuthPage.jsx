@@ -1,17 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { loginStart, loginSuccess, loginFailure } from '../../store/authSlice';
 import { showToast } from '../../store/appSlice';
 import { authAPI } from '../../lib/api';
-import { Shield, Mail, Lock, User, UserPlus, ArrowRight, Database } from 'lucide-react';
+import { Shield, Mail, Lock, User, UserPlus, ArrowRight, Home } from 'lucide-react';
 
 export default function AuthPage() {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const loading = useSelector((state) => state.auth.loading);
-  
+
   const [isLogin, setIsLogin] = useState(true);
+
+  // Handle URL query params: ?mode=register or ?demo=true
+  useEffect(() => {
+    const mode = searchParams.get('mode');
+    if (mode === 'register') {
+      setIsLogin(false);
+    }
+  }, [searchParams]);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -48,23 +60,31 @@ export default function AuthPage() {
       dispatch(loginSuccess(res.data));
       dispatch(showToast({ message: `Logged in as ${res.data.user.role}!`, type: 'success' }));
     } catch (error) {
-      // If seeding is needed first
       dispatch(loginFailure(error.message));
-      dispatch(showToast({ 
-        message: 'Quick login failed. Try clicking "Seed Demo Data" above if the database is unseeded.', 
-        type: 'error' 
+      dispatch(showToast({
+        message: 'Quick login failed. Please check your credentials and try again.',
+        type: 'error'
       }));
     }
   };
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-950 via-slate-950 to-black p-4 relative overflow-hidden">
+      {/* Back to Home link */}
+      <button
+        onClick={() => router.push('/')}
+        className="absolute top-4 left-4 flex items-center gap-1.5 text-sm text-slate-400 hover:text-indigo-400 transition-colors cursor-pointer z-20"
+      >
+        <Home className="w-4 h-4" />
+        Back to Home
+      </button>
+
       {/* Dynamic background ambient glowing circles */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-8 z-10">
-        
+
         {/* Left column: Brand introduction */}
         <div className="lg:col-span-6 flex flex-col justify-center text-left space-y-6 px-4">
           <div className="flex items-center gap-2">
@@ -91,7 +111,7 @@ export default function AuthPage() {
               <Shield className="w-3.5 h-3.5 text-indigo-500" />
               Demo Login Credentials
             </span>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <button
                 onClick={() => handleQuickLogin('admin@system.com')}
@@ -134,8 +154,8 @@ export default function AuthPage() {
                 {isLogin ? 'Sign In' : 'Create Account'}
               </h3>
               <p className="text-xs text-slate-500 mt-1.5">
-                {isLogin 
-                  ? 'Access your workspace and view team activity.' 
+                {isLogin
+                  ? 'Access your workspace and view team activity.'
                   : 'Register a new developer account under the system.'}
               </p>
             </div>

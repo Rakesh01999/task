@@ -1,16 +1,17 @@
 'use client';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
 import { logout } from '../../store/authSlice';
 import { toggleSidebar, showToast } from '../../store/appSlice';
-import { 
-  LayoutDashboard, 
-  FolderKanban, 
-  ListTodo, 
-  Users, 
-  Activity, 
-  LogOut, 
-  ChevronLeft, 
+import {
+  LayoutDashboard,
+  FolderKanban,
+  ListTodo,
+  Users,
+  Activity,
+  LogOut,
+  ChevronLeft,
   ChevronRight,
   Sun,
   Moon
@@ -19,6 +20,7 @@ import { useEffect, useState } from 'react';
 
 export default function Sidebar({ currentView, onViewChange }) {
   const dispatch = useDispatch();
+  const router = useRouter();
   const user = useSelector((state) => state.auth.user);
   const sidebarOpen = useSelector((state) => state.app.sidebarOpen);
   const [theme, setTheme] = useState('dark');
@@ -54,6 +56,7 @@ export default function Sidebar({ currentView, onViewChange }) {
   const handleLogout = () => {
     dispatch(logout());
     dispatch(showToast({ message: 'Logged out successfully', type: 'success' }));
+    router.push('/');
   };
 
   const navItems = [
@@ -65,10 +68,9 @@ export default function Sidebar({ currentView, onViewChange }) {
   ];
 
   return (
-    <aside 
-      className={`glass-panel border-r min-h-screen flex flex-col justify-between transition-all duration-300 z-30 fixed lg:relative ${
-        sidebarOpen ? 'w-64' : 'w-20'
-      }`}
+    <aside
+      className={`glass-panel border-r min-h-screen flex flex-col justify-between transition-all duration-300 z-30 fixed lg:relative ${sidebarOpen ? 'w-64' : 'w-20'
+        }`}
     >
       <div>
         {/* Brand / Logo section */}
@@ -83,7 +85,7 @@ export default function Sidebar({ currentView, onViewChange }) {
               </span>
             )}
           </div>
-          
+
           <button
             onClick={() => dispatch(toggleSidebar())}
             className="p-1 rounded-md hover:bg-slate-800/50 text-slate-400 hover:text-slate-200 transition-colors hidden lg:block cursor-pointer"
@@ -120,11 +122,10 @@ export default function Sidebar({ currentView, onViewChange }) {
               <button
                 key={item.id}
                 onClick={() => onViewChange(item.id)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${
-                  isActive 
-                    ? 'bg-indigo-600 text-white shadow-[0_0_15px_-3px_rgba(99,102,241,0.4)]' 
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${isActive
+                    ? 'bg-indigo-600 text-white shadow-[0_0_15px_-3px_rgba(99,102,241,0.4)]'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-                } ${!sidebarOpen && 'justify-center'}`}
+                  } ${!sidebarOpen && 'justify-center'}`}
               >
                 {item.icon}
                 {sidebarOpen && <span>{item.name}</span>}
@@ -138,9 +139,8 @@ export default function Sidebar({ currentView, onViewChange }) {
       <div className="p-3 border-t border-slate-800/50 space-y-1">
         <button
           onClick={toggleTheme}
-          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 cursor-pointer ${
-            !sidebarOpen && 'justify-center'
-          }`}
+          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 cursor-pointer ${!sidebarOpen && 'justify-center'
+            }`}
         >
           {theme === 'dark' ? (
             <>
@@ -157,9 +157,8 @@ export default function Sidebar({ currentView, onViewChange }) {
 
         <button
           onClick={handleLogout}
-          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-rose-400 hover:text-rose-300 hover:bg-rose-950/20 cursor-pointer ${
-            !sidebarOpen && 'justify-center'
-          }`}
+          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-rose-400 hover:text-rose-300 hover:bg-rose-950/20 cursor-pointer ${!sidebarOpen && 'justify-center'
+            }`}
         >
           <LogOut className="w-5 h-5" />
           {sidebarOpen && <span>Sign Out</span>}

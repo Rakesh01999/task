@@ -40,7 +40,6 @@ export const authAPI = {
   login: (email, password) => apiClient.post('/auth/login', { email, password }),
   register: (name, email, password, role) => apiClient.post('/auth/register', { name, email, password, role }),
   me: () => apiClient.get('/auth/me'),
-  seed: () => apiClient.post('/auth/seed'),
 };
 
 export const projectsAPI = {
