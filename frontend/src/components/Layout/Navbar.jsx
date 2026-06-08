@@ -2,7 +2,7 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setSearchQuery, toggleSidebar } from '../../store/appSlice';
-import { Menu, Search, Bell } from 'lucide-react';
+import { Menu, Search } from 'lucide-react';
 
 export default function Navbar({ title }) {
   const dispatch = useDispatch();
@@ -44,13 +44,8 @@ export default function Navbar({ title }) {
         </div>
       </div>
 
-      {/* Right section: Notifications */}
+      {/* Right section: User avatar (mobile) */}
       <div className="flex items-center gap-2">
-        <div className="relative p-1.5 rounded-md hover:bg-slate-800/40 text-slate-400 hover:text-slate-200 transition-colors cursor-pointer">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-1 right-1 w-2 h-2 bg-indigo-500 rounded-full"></span>
-        </div>
-
         {user && (
           <div className="flex items-center gap-2 ml-1 sm:hidden">
             <img

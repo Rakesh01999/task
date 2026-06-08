@@ -109,13 +109,7 @@ export default function HomePage() {
             {/* Hero Section */}
             <section className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-16">
                 <div className="flex flex-col lg:flex-row items-center gap-12">
-                    {/* Left: Text */}
                     <div className="flex-1 text-center lg:text-left space-y-6">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-600/10 border border-indigo-500/20 rounded-full text-xs font-medium text-indigo-400">
-                            <Sparkles className="w-3.5 h-3.5" />
-                            Smart Project & Task Collaboration
-                        </div>
-
                         <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
                             <span className="text-white">Manage projects,</span>
                             <br />
@@ -147,7 +141,6 @@ export default function HomePage() {
                             </button>
                         </div>
 
-                        {/* Trust indicators */}
                         <div className="flex items-center gap-6 pt-6 justify-center lg:justify-start text-sm text-slate-500">
                             <div className="flex items-center gap-1.5">
                                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
@@ -160,72 +153,6 @@ export default function HomePage() {
                             <div className="flex items-center gap-1.5">
                                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                                 Real-time insights
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right: Visual preview card */}
-                    <div className="flex-1 max-w-lg w-full">
-                        <div className="glass-panel rounded-2xl p-6 space-y-4 shadow-[0_0_40px_rgba(99,102,241,0.1)]">
-                            <div className="flex items-center justify-between">
-                                <h3 className="font-semibold text-sm text-slate-300">Dashboard Preview</h3>
-                                <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-medium rounded-md">Live</span>
-                            </div>
-
-                            {/* Mini stat cards */}
-                            <div className="grid grid-cols-3 gap-3">
-                                <div className="bg-slate-900/60 rounded-xl p-3 text-center border border-slate-800/60">
-                                    <FolderKanban className="w-5 h-5 text-indigo-400 mx-auto mb-1" />
-                                    <div className="text-lg font-bold text-white">12</div>
-                                    <div className="text-xs text-slate-500">Projects</div>
-                                </div>
-                                <div className="bg-slate-900/60 rounded-xl p-3 text-center border border-slate-800/60">
-                                    <ListTodo className="w-5 h-5 text-violet-400 mx-auto mb-1" />
-                                    <div className="text-lg font-bold text-white">48</div>
-                                    <div className="text-xs text-slate-500">Tasks</div>
-                                </div>
-                                <div className="bg-slate-900/60 rounded-xl p-3 text-center border border-slate-800/60">
-                                    <Users className="w-5 h-5 text-purple-400 mx-auto mb-1" />
-                                    <div className="text-lg font-bold text-white">8</div>
-                                    <div className="text-xs text-slate-500">Members</div>
-                                </div>
-                            </div>
-
-                            {/* Mini progress bars */}
-                            <div className="space-y-2.5">
-                                <div>
-                                    <div className="flex justify-between text-xs mb-1">
-                                        <span className="text-slate-400">Website Redesign</span>
-                                        <span className="text-indigo-400">75%</span>
-                                    </div>
-                                    <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                                        <div className="h-full bg-gradient-to-r from-indigo-500 to-indigo-400 rounded-full" style={{ width: '75%' }}></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex justify-between text-xs mb-1">
-                                        <span className="text-slate-400">Mobile App</span>
-                                        <span className="text-violet-400">45%</span>
-                                    </div>
-                                    <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                                        <div className="h-full bg-gradient-to-r from-violet-500 to-violet-400 rounded-full" style={{ width: '45%' }}></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex justify-between text-xs mb-1">
-                                        <span className="text-slate-400">API Integration</span>
-                                        <span className="text-emerald-400">90%</span>
-                                    </div>
-                                    <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                                        <div className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full" style={{ width: '90%' }}></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Mini activity */}
-                            <div className="flex items-center gap-2 pt-1 text-xs text-slate-500">
-                                <Activity className="w-3.5 h-3.5 text-indigo-400" />
-                                <span>3 tasks completed today</span>
                             </div>
                         </div>
                     </div>
@@ -255,37 +182,6 @@ export default function HomePage() {
                             <p className="text-sm text-slate-400 leading-relaxed">{feature.description}</p>
                         </div>
                     ))}
-                </div>
-            </section>
-
-            {/* CTA Section */}
-            <section className="relative z-10 max-w-7xl mx-auto px-6 py-16">
-                <div className="glass-panel rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 via-purple-600/10 to-violet-600/10 pointer-events-none"></div>
-                    <div className="relative z-10 space-y-6">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white">
-                            Ready to streamline your workflow?
-                        </h2>
-                        <p className="text-slate-400 max-w-xl mx-auto">
-                            Join your team on SmartCollab. Sign in with your credentials or try a demo account to explore all features instantly.
-                        </p>
-                        <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-                            <button
-                                onClick={() => router.push('/auth')}
-                                className="px-8 py-3 text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] transition-all cursor-pointer flex items-center gap-2"
-                            >
-                                Sign In to Dashboard
-                                <ArrowRight className="w-4 h-4" />
-                            </button>
-                            <button
-                                onClick={() => router.push('/auth?demo=true')}
-                                className="px-8 py-3 text-base font-semibold text-slate-300 hover:text-white border border-slate-700 hover:border-indigo-500/50 rounded-xl transition-all cursor-pointer flex items-center gap-2"
-                            >
-                                <Zap className="w-4 h-4 text-indigo-400" />
-                                Explore Demo
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </section>
 
