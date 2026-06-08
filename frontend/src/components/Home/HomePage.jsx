@@ -84,7 +84,7 @@ export default function HomePage() {
                             S
                         </div>
                         <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-violet-400">
-                            SmartCollab
+                            TaskCom
                         </span>
                     </div>
 
@@ -164,7 +164,7 @@ export default function HomePage() {
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-white mb-3">Everything your team needs</h2>
                     <p className="text-slate-400 max-w-2xl mx-auto">
-                        Powerful features built for modern teams. From project planning to real-time analytics, SmartCollab keeps everyone aligned.
+                        Powerful features built for modern teams. From project planning to real-time analytics, TaskCom keeps everyone aligned.
                     </p>
                 </div>
 
@@ -193,11 +193,11 @@ export default function HomePage() {
                             S
                         </div>
                         <span className="font-semibold text-sm bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-400">
-                            SmartCollab
+                            TaskCom
                         </span>
                     </div>
                     <p className="text-xs text-slate-500">
-                        © 2026 SmartCollab. Built for modern teams.
+                        © 2026 TaskCom. Built for modern teams.
                     </p>
                 </div>
             </footer>

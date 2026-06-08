@@ -92,7 +92,7 @@ export default function AuthPage() {
               S
             </div>
             <span className="font-bold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-violet-400">
-              SmartCollab
+              TaskCom
             </span>
           </div>
 

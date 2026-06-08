@@ -81,7 +81,7 @@ export default function Sidebar({ currentView, onViewChange }) {
             </div>
             {sidebarOpen && (
               <span className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-400 whitespace-nowrap">
-                SmartCollab
+                TaskCom
               </span>
             )}
           </div>
@@ -123,8 +123,8 @@ export default function Sidebar({ currentView, onViewChange }) {
                 key={item.id}
                 onClick={() => onViewChange(item.id)}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${isActive
-                    ? 'bg-indigo-600 text-white shadow-[0_0_15px_-3px_rgba(99,102,241,0.4)]'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                  ? 'bg-indigo-600 text-white shadow-[0_0_15px_-3px_rgba(99,102,241,0.4)]'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
                   } ${!sidebarOpen && 'justify-center'}`}
               >
                 {item.icon}
