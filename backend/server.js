@@ -44,6 +44,11 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/team', teamRoutes);
 app.use('/api/activities', activityRoutes);
 
+// Root Route
+app.get('/', (req, res) => {
+  res.json({ success: true, message: 'Server is running. Visit /api/health for health check.' });
+});
+
 // Health Check Route
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'Server is running perfectly' });
@@ -60,7 +65,7 @@ const autoSeed = async () => {
     const userCount = await User.countDocuments();
     if (userCount === 0) {
       console.log('Database is empty. Auto-seeding default demo data...');
-      
+
       const admin = await User.create({
         name: 'Sarah Connor (Admin)',
         email: 'admin@system.com',
@@ -192,7 +197,7 @@ const autoSeed = async () => {
         { text: `Member "Bob Johnson" added to "Admin Dashboard"`, user: admin._id, type: 'member_added', project: p3._id, createdAt: new Date(Date.now() - 15 * 60 * 1000) },
       ];
       await Activity.insertMany(activities);
-      
+
       console.log('Database successfully seeded with demo mock data.');
     }
   } catch (err) {

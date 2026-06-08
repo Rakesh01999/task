@@ -46,6 +46,11 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/team', teamRoutes);
 app.use('/api/activities', activityRoutes);
 
+// Root Route
+app.get('/', (_req, res) => {
+  res.json({ success: true, message: 'Server is running. Visit /api/health for health check.' });
+});
+
 // Health Check Route
 app.get('/api/health', (_req, res) => {
   res.json({ success: true, message: 'Server is running perfectly' });
